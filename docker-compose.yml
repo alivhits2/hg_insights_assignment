@@ -21,6 +21,7 @@ services:
 
   airflow-init:
     build: .
+    image: alivhits2/hg_insights-airflow:latest
     container_name: airflow-init
     depends_on:
       elt-postgres:
@@ -46,6 +47,7 @@ services:
 
   airflow-webserver:
     build: .
+    image: alivhits2/hg_insights-airflow:latest
     container_name: airflow-webserver
     depends_on:
       airflow-init:
@@ -64,6 +66,7 @@ services:
 
   airflow-scheduler:
     build: .
+    image: alivhits2/hg_insights-airflow:latest
     container_name: airflow-scheduler
     depends_on:
       airflow-init:
