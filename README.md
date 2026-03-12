@@ -48,7 +48,7 @@ Run the following commands to create a project directory, extract the bundled co
 ```bash
 mkdir hg-elt-assignment && cd hg-elt-assignment
 mkdir -p data/customer_churn_data
-docker run --rm alivhits2/hg-elt-assignment:latest cat /docker-compose.yml > docker-compose.yml
+docker run --rm --entrypoint cat alivhits2/hg-elt-assignment:latest /docker-compose.yml > docker-compose.yml
 docker compose up -d
 ```
 
