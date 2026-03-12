@@ -15,4 +15,6 @@ COPY requirements.txt .
 RUN --mount=type=cache,target=/home/airflow/.cache/pip \
     pip install -r requirements.txt
 
+COPY dags/ /opt/airflow/dags/
+COPY dbt_project/ /opt/airflow/dbt_project/
 COPY docker-compose.prod.yml /docker-compose.yml
