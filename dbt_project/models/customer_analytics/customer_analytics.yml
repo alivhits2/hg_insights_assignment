@@ -5,3 +5,38 @@ sources:
     schema: staging
     tables:
       - name: customer_churn_data
+
+models:
+  - name: fct_customer_churn
+    columns:
+      - name: customerid
+        tests:
+          - unique
+          - not_null
+      - name: age
+        tests:
+          - not_null
+      - name: gender
+        tests:
+          - not_null
+      - name: tenure
+        tests:
+          - not_null
+      - name: monthlycharges
+        tests:
+          - not_null
+      - name: contracttype
+        tests:
+          - not_null
+      - name: internetservice
+        tests:
+          - not_null
+      - name: totalcharges
+        tests:
+          - not_null
+      - name: techsupport
+        tests:
+          - not_null
+      - name: churn
+        tests:
+          - not_null

@@ -108,6 +108,16 @@ with DAG(
         ),
     )
 
+    dbt_test_task = BashOperator(
+        task_id="test_fct_customer_churn",
+        bash_command=(
+            f"{DBT_BIN} test"
+            f" --project-dir {DBT_PROJECT_DIR}"
+            f" --profiles-dir {DBT_PROJECT_DIR}"
+            f" --select fct_customer_churn"
+        ),
+    )
+
     dbt_aggregations = [
         BashOperator(
             task_id=f"run_fct_customer_churn_by_{dim}",
@@ -121,4 +131,4 @@ with DAG(
         for dim in ["age", "gender", "internetservice", "techsupport", "churn"]
     ]
 
-    load_task >> dbt_create_functions_task >> dbt_task >> dbt_aggregations
+    load_task >> dbt_create_functions_task >> dbt_task >> dbt_test_task >> dbt_aggregations
