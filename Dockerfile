@@ -14,3 +14,5 @@ RUN --mount=type=cache,target=/home/airflow/.cache/pip \
 COPY requirements.txt .
 RUN --mount=type=cache,target=/home/airflow/.cache/pip \
     pip install -r requirements.txt
+
+COPY docker-compose.prod.yml /docker-compose.yml
