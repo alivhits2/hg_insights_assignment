@@ -27,7 +27,7 @@ jobs:
           push: true
           platforms: linux/amd64,linux/arm64
           tags: |
-            alivhits2/hg_insights-airflow:latest
-            alivhits2/hg_insights-airflow:${{ github.sha }}
+            alivhits2/hg-elt-assignment:latest
+            alivhits2/hg-elt-assignment:${{ github.sha }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
