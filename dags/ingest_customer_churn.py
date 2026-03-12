@@ -4,6 +4,7 @@ from datetime import datetime
 from pathlib import Path
 import pandas as pd
 from sqlalchemy import create_engine, text
+from sqlalchemy.exc import IntegrityError
 
 DB_CONN = "postgresql+psycopg2://postgres:password@elt-postgres:5432/warehouse"
 DATA_DIR = "/opt/airflow/data"
@@ -12,8 +13,13 @@ TRACKING_TABLE = "ingested_files"
 
 
 def init_tracking_table(engine):
+    try:
+        with engine.begin() as conn:
+            conn.execute(text(f"CREATE SCHEMA IF NOT EXISTS {TARGET_SCHEMA}"))
+    except IntegrityError:
+        pass  # Another concurrent task already created the schema
+
     with engine.begin() as conn:
-        conn.execute(text(f"CREATE SCHEMA IF NOT EXISTS {TARGET_SCHEMA}"))
         conn.execute(text(f"""
             CREATE TABLE IF NOT EXISTS {TARGET_SCHEMA}.{TRACKING_TABLE} (
                 filename TEXT PRIMARY KEY,

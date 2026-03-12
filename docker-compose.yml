@@ -27,7 +27,7 @@ services:
       elt-postgres:
         condition: service_healthy
     environment:
-      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://postgres:password@elt-postgres/warehouse
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://postgres:password@elt-claude/warehouse
       AIRFLOW__CORE__EXECUTOR: LocalExecutor
     command: >
       bash -c "
