@@ -92,12 +92,13 @@ A sample dataset for this can be downloaded from [Kaggle](https://www.kaggle.com
 
 Each new file dropped in this directory will be automatically picked up by the next hourly DAG run.
 
-### Step 3 — Trigger the pipeline
+### Step 3 — Enable the pipeline
 
 1. Open the Airflow UI at **http://localhost:8080**
 2. Log in with **admin / admin**
-3. Find the `ingest_data_files` DAG and toggle it on if not already enabled
-4. Click **▶ Trigger DAG** to run it immediately
+3. Find the `ingest_data_files` DAG and click the toggle switch to unpause it
+
+The DAG will run automatically at the top of the next hour. Do not click **▶ Trigger DAG** — unpausing already schedules a run and clicking trigger will create a duplicate.
 
 ### Step 4 — Query the results
 
