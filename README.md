@@ -46,9 +46,9 @@ customer_analytics.fct_customer_churn_by_churn
 Run the following commands to create a project directory, extract the bundled configuration from the image, and start all containers:
 
 ```bash
-mkdir hg_insights && cd hg_insights
+mkdir hg-elt-assignment && cd hg-elt-assignment
 mkdir -p data/customer_churn_data
-docker run --rm alivhits2/hg_insights-airflow:latest cat /docker-compose.yml > docker-compose.yml
+docker run --rm alivhits2/hg-elt-assignment:latest cat /docker-compose.yml > docker-compose.yml
 docker compose up -d
 ```
 
