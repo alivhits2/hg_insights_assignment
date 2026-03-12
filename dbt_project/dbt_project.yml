@@ -3,3 +3,9 @@ version: '1.0.0'
 profile: default
 model-paths: ["models"]
 seed-paths: ["seeds"]
+
+models:
+  hgi_elt_project:
+    customer_analytics:
+      +schema: customer_analytics
+

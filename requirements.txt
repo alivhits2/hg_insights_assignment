@@ -1,4 +1,4 @@
 setuptools
-pandas==2.2.3
+pandas==2.1.4
 psycopg2-binary==2.9.9
-sqlalchemy==2.0.36
+sqlalchemy==1.4.52

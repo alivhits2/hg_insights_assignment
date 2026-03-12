@@ -1,0 +1,5 @@
+CustomerID,Age,Gender,Tenure,MonthlyCharges,ContractType,InternetService,TotalCharges,TechSupport,Churn
+9999,49,Male,4,88.35,(917)345-8765,Fiber Optic,353.4,Yes,Yes
+9989,43,090-34-9800,0,36.67,Month-to-Month,Fiber Optic,0.0,Yes,Yes
+9979,51,Female,2,63.79,Month-to-Month,Fiber Optic,127.58,No,196.245.1.1
+

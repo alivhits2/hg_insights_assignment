@@ -27,19 +27,20 @@ services:
       elt-postgres:
         condition: service_healthy
     environment:
-      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://postgres:password@elt-claude/warehouse
+      AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://postgres:password@elt-postgres/warehouse
       AIRFLOW__CORE__EXECUTOR: LocalExecutor
-    command: >
-      bash -c "
+    command:
+      - bash
+      - -c
+      - >-
         airflow db init &&
         airflow users create
-          --username admin
-          --password admin
-          --firstname Admin
-          --lastname User
-          --role Admin
-          --email admin@example.com
-      "
+        --username admin
+        --password admin
+        --firstname Admin
+        --lastname User
+        --role Admin
+        --email admin@example.com
     volumes:
       - ./dags:/opt/airflow/dags
       - ./dbt_project:/opt/airflow/dbt_project
@@ -58,11 +59,13 @@ services:
       AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://postgres:password@elt-postgres/warehouse
       AIRFLOW__CORE__EXECUTOR: LocalExecutor
       AIRFLOW__CORE__LOAD_EXAMPLES: "false"
+      AIRFLOW__WEBSERVER__SECRET_KEY: "hgi_elt_secret_key"
     command: airflow webserver
     volumes:
       - ./dags:/opt/airflow/dags
       - ./dbt_project:/opt/airflow/dbt_project
       - ./data:/opt/airflow/data
+      - airflow_logs:/opt/airflow/logs
 
   airflow-scheduler:
     build: .
@@ -74,11 +77,14 @@ services:
     environment:
       AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://postgres:password@elt-postgres/warehouse
       AIRFLOW__CORE__EXECUTOR: LocalExecutor
+      AIRFLOW__WEBSERVER__SECRET_KEY: "hgi_elt_secret_key"
     command: airflow scheduler
     volumes:
       - ./dags:/opt/airflow/dags
       - ./dbt_project:/opt/airflow/dbt_project
-      - ./data:/opt/airflow/data        # ← Scheduler can also access your files
+      - ./data:/opt/airflow/data
+      - airflow_logs:/opt/airflow/logs
 
 volumes:
   postgres_data:
+  airflow_logs:
