@@ -88,6 +88,8 @@ Files must have these columns (case-insensitive):
 | techsupport | text |
 | churn | text |
 
+A sample dataset fro this can be downloaded from [Kaggle](https://www.kaggle.com/datasets/abdullah0a/telecom-customer-churn-insights-for-analysis/data).
+
 Each new file dropped in this directory will be automatically picked up by the next hourly DAG run.
 
 ### Step 3 — Trigger the pipeline
